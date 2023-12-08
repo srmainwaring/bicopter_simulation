@@ -1,0 +1,325 @@
+<?xml version='1.0'?>
+<sdf version="1.9">
+  <model name="bicopter_with_ardupilot">
+    <include>
+      <uri>model://bicopter_with_standoffs</uri>
+    </include>
+
+    <!--
+      visual markers for debugging
+      - blade root    - teal
+      - blade tip     - orange
+      - blade cp      - yellow
+      - blade forward - red
+      - blade upward  - blue
+    -->
+    <!--
+    <link name="cw-mot">
+      <pose relative_to='mot0'>0 0 0 0 -0 0</pose>
+      <visual name='cw-mot_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.01/radius>
+          </sphere>
+        </geometry>
+        <material>
+          <ambient>0 1 1 0.5</ambient>
+          <diffuse>0 1 1 0.5</diffuse>
+        </material>
+      </visual>
+    </link>
+    
+    <link name="ccw-mot">
+      <gravity>0</gravity>
+      <pose>0.13 -0.22 0.216 0 -0 0</pose>
+      <visual name='ccw-mot_visual'>
+        <pose>0 0 0 0 -0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.01</radius>
+          </sphere>
+        </geometry>
+        <material>
+          <ambient>0 1 1 0.5</ambient>
+          <diffuse>0 1 1 0.5</diffuse>
+        </material>
+      </visual>
+    </link>
+    
+    <joint name="mot0" type="revolute">
+      <parent>bicopter_with_standoffs::cw-servo</parent>
+      <child>ccw-mot</child>
+      <axis>
+        <limit>
+          <effort>100</effort>
+          <velocity>100</velocity>    
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+    
+    
+    <joint name="mot1" type="revolute">
+      <parent>bicopter_with_standoffs::ccw-servo</parent>
+      <child>cw-mot</child>
+      <axis>
+        <limit>
+          <effort>100</effort>
+          <velocity>100</velocity>    
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+    -->
+
+    <!-- plugins -->
+    <!-- battery plugin -->  
+    <plugin filename="gz-sim-linearbatteryplugin-system"
+      name="gz::sim::systems::LinearBatteryPlugin">
+      <!--Li-ion battery spec from LIR18650 datasheet-->
+      <battery_name>linear_battery</battery_name>
+      <voltage>16.8</voltage>
+      <open_circuit_voltage_constant_coef>16.8</open_circuit_voltage_constant_coef>
+      <open_circuit_voltage_linear_coef>14</open_circuit_voltage_linear_coef>
+      <initial_charge>16.8</initial_charge>
+      <capacity>5.0</capacity>
+      <resistance>0.07</resistance>
+      <smooth_current_tau>2.0</smooth_current_tau>
+      <enable_recharge>false</enable_recharge>
+      <charging_time>3.0</charging_time>
+      <soc_threshold>0.51</soc_threshold>
+      
+      <!-- Consumer-specific -->
+      <power_load>2.1</power_load>
+      <start_on_motion>true</start_on_motion>
+      </plugin>
+      <!-- battery plugin -->
+      
+    <plugin filename="gz-sim-joint-state-publisher-system"
+      name="gz::sim::systems::JointStatePublisher">
+    </plugin>
+    
+    <plugin filename="gz-sim-lift-drag-system"
+        name="gz::sim::systems::LiftDrag">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.002</area>
+      <air_density>1.2041</air_density>
+      <cp>0.084 0 0</cp>
+      <forward>0 1 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>bicopter_with_standoffs::cw-mot</link_name>
+    </plugin>
+    
+    <plugin filename="gz-sim-lift-drag-system"
+        name="gz::sim::systems::LiftDrag">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall> 
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.002</area>
+      <air_density>1.2041</air_density>
+      <cp>0.084 0 0</cp>
+      <forward>0 1 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>bicopter_with_standoffs::cw-mot</link_name>
+    </plugin>
+    
+    <plugin filename="gz-sim-lift-drag-system"
+        name="gz::sim::systems::LiftDrag">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.002</area>
+      <air_density>1.2041</air_density>
+      <cp>-0.084 0 0</cp>
+      <forward>0 -1 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>bicopter_with_standoffs::cw-mot</link_name>
+    </plugin>
+
+    <plugin filename="gz-sim-lift-drag-system"
+        name="gz::sim::systems::LiftDrag">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.002</area>
+      <air_density>1.2041</air_density>
+      <cp>0.084 0 0</cp>
+      <forward>0 1 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>bicopter_with_standoffs::ccw-mot</link_name>
+    </plugin>
+    
+    <plugin filename="gz-sim-lift-drag-system"
+        name="gz::sim::systems::LiftDrag">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.002</area>
+      <air_density>1.2041</air_density>
+      <cp>0.084 0 0</cp>
+      <forward>0 1 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>bicopter_with_standoffs::ccw-mot</link_name>
+    </plugin>
+    
+    <plugin filename="gz-sim-lift-drag-system"
+        name="gz::sim::systems::LiftDrag">
+      <a0>0.3</a0>
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma>
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.002</area>
+      <air_density>1.2041</air_density>
+      <cp>-0.084 0 0</cp>
+      <forward>0 -1 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>bicopter_with_standoffs::ccw-mot</link_name>
+    </plugin>
+
+    <plugin filename="gz-sim-apply-joint-force-system"
+      name="gz::sim::systems::ApplyJointForce">
+      <joint_name>bicopter_with_standoffs::mot0</joint_name>
+    </plugin>
+    <plugin filename="gz-sim-apply-joint-force-system"
+      name="gz::sim::systems::ApplyJointForce">
+      <joint_name>bicopter_with_standoffs::mot1</joint_name>
+    </plugin>
+    
+    <plugin filename="libgz-sim-apply-joint-force-system.so"
+      name="gz::sim::systems::ApplyJointForce">
+      <joint_name>bicopter_with_standoffs::ser0</joint_name>
+    </plugin>
+    
+    <plugin filename="libgz-sim-apply-joint-force-system.so"
+      name="gz::sim::systems::ApplyJointForce">
+      <joint_name>bicopter_with_standoffs::ser1</joint_name>
+    </plugin>
+      
+    <plugin name="ArduPilotPlugin" filename="libArduPilotPlugin.so">
+      <!-- Port settings -->
+      <fdm_addr>127.0.0.1</fdm_addr>
+      <fdm_port_in>9002</fdm_port_in>
+      <connectionTimeoutMaxCount>5</connectionTimeoutMaxCount>
+      <lock_step>1</lock_step>
+      
+      <imuName>bicopter_with_standoffs::imu_link::imu_sensor</imuName>
+      
+      <!-- Sensors -->
+
+      <!--
+          incoming control command [0, 1]
+          so offset it by 0 to get [0, 1]
+          and divide max target by 1.
+          offset = 0
+          multiplier = 838 max rpm / 1 = 838
+        -->
+
+      <control channel="0">
+        <jointName>bicopter_with_standoffs::mot0</jointName>
+        <useForce>1</useForce>
+        <multiplier>1500</multiplier>
+        <offset>0</offset>
+        <servo_min>1100</servo_min>
+        <servo_max>1900</servo_max>
+        <type>VELOCITY</type>
+        <p_gain>0.20</p_gain>
+        <i_gain>0</i_gain>
+        <d_gain>0</d_gain>
+        <i_max>-1</i_max>
+        <i_min>0</i_min>
+        <cmd_max>2.5</cmd_max>
+        <cmd_min>-2.5</cmd_min>
+        <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
+      </control>
+
+      <control channel="1">
+        <jointName>bicopter_with_standoffs::mot1</jointName>
+        <useForce>1</useForce>
+        <multiplier>-1500</multiplier>
+        <offset>0</offset>
+        <servo_min>1100</servo_min>
+        <servo_max>1900</servo_max>
+        <type>VELOCITY</type>
+        <p_gain>0.20</p_gain>
+        <i_gain>0</i_gain>
+        <d_gain>0</d_gain>
+        <i_max>-1</i_max>
+        <i_min>0</i_min>
+        <cmd_max>2.5</cmd_max>
+        <cmd_min>-2.5</cmd_min>
+        <controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
+      </control>
+      
+      <control channel="2">
+        <jointName>bicopter_with_standoffs::ser0</jointName>
+        <useForce>1</useForce>
+        <multiplier>-2.094395</multiplier>
+        <offset>-0.5</offset>
+        <servo_min>1100</servo_min>
+        <servo_max>1900</servo_max>
+        <type>VELOCITY</type>
+        <p_gain>10.0</p_gain>
+        <i_gain>0</i_gain>
+        <d_gain>0</d_gain>
+        <i_max>-1</i_max>
+        <i_min>0</i_min>
+        <cmd_max>2.5</cmd_max>
+        <cmd_min>-2.5</cmd_min>
+      </control>
+
+      <control channel="3">
+        <jointName>bicopter_with_standoffs::ser1</jointName>
+        <useForce>1</useForce>
+        <multiplier>2.094395</multiplier>
+        <offset>-0.5</offset>
+        <servo_min>1100</servo_min>
+        <servo_max>1900</servo_max>
+        <type>VELOCITY</type>
+        <p_gain>10.0</p_gain>
+        <i_gain>0</i_gain>
+        <d_gain>0</d_gain>
+        <i_max>-1</i_max>
+        <i_min>0</i_min>
+        <cmd_max>2.5</cmd_max>
+        <cmd_min>-2.5</cmd_min>
+      </control>
+
+    </plugin>
+  </model>
+</sdf>
