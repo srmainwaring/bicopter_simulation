@@ -1,16 +1,15 @@
 <?xml version='1.0'?>
 <sdf version='1.9'> 
   <model name='bicopter_with_standoffs'>
-  <static>false</static>
-  <pose>0 0 0.2 0 0 0</pose> <!--원래 값 0 0 0.194923 0 0 0 -->
+  <pose>0 0 0.1 0 0 0</pose> <!--원래 값 0 0 0.194923 0 0 0 -->
     <link name='base_link'>
       <velocity_decay>
         <linear>0.0</linear>
         <angular>0.0</angular>
       </velocity_decay>
       <inertial>
-        <pose>0.002973 0.001387 0.095001 0 -0 0</pose> <!--원래 값 0.002973 0.001387 0.095001 0 -0 0-->
-        <mass>3</mass> <!--원래 값 mass 0.390996-->
+        <pose>0.002973 0.001387 0.095001 0 -0 0</pose> <!--Default : 0.002973 0.001387 0.095001 0 -0 0-->
+        <mass>0.02</mass> <!--원래 값 mass 0.390996-->
         <inertia>
           <ixx>0.00019185</ixx>
           <ixy>4.02647e-07</ixy>
@@ -20,8 +19,8 @@
           <izz>0.000526809</izz>
         </inertia>
       </inertial>
-      <collision name='base_link_collision'> <!--원래 값 collision 오류 발생으로 _box 로 변경 -->
-        <pose>0 0 0 0 -0 0</pose> <!-- 원래 값 : 0 0 0 0 -0 0 -->
+      <collision name='base_link_collision'> <!--Default : collision 오류 발생으로 _box 로 변경 -->
+        <pose>0 0 0 0 -0 0</pose> <!-- Default : 0 0 0 0 -0 0 -->
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
@@ -42,7 +41,7 @@
             <name>Gazebo/White</name>
             <uri>__default__</uri>
           </script-->
-          <ambient>1 1 1 1</ambient>
+          <ambient>1 1 0 1</ambient> <!-- default : 1 1 1 1 -->
           <diffuse>1 1 1 1</diffuse>
           <specular>.1 .1 .1 1</specular>
         </material>
@@ -56,9 +55,9 @@
       <parent>base_link</parent>
       <child>ccw-servo</child>
       <axis>
-        <xyz>0 -1 0</xyz> <!-- 원래 값 : 0 -1 0 0 -0 0 -->
+        <xyz>0 -1 0</xyz> <!-- default : 0 -1 0 0 -0 0 -->
         <limit>    
-          <lower>0</lower> <!-- 정규 값 : lower -0.5, upper 0.5 -->
+          <lower>0</lower> <!-- default : lower -0.5, upper 0.5 -->
           <upper>0</upper>
           <effort>0</effort>
           <velocity>0</velocity>
@@ -67,7 +66,9 @@
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
         </dynamics>
-      </axis><material>
+      </axis>
+      
+      <material>
           <!--script>
             <name>Gazebo/White</name>
             <uri>__default__</uri>
@@ -76,14 +77,14 @@
           <diffuse>1 1 1 1</diffuse>
           <specular>.1 .1 .1 1</specular>
         </material>
+        
     </joint>
-    
     
     <link name="ccw-servo">
       <pose relative_to='ser0'>0 0 0 0 -0 0</pose>
       <inertial>
         <pose>-5e-06 -0.003367 0.021721 0 -0 0</pose>
-        <mass>0.0318045</mass>
+        <mass>0.032</mass> <!-- default : 0.0318045 -->
         <inertia>
           <ixx>4.59202e-06</ixx>
           <ixy>-7.94305e-11</ixy>
@@ -131,9 +132,10 @@
       <axis>
         <xyz>0 0 -1</xyz>
         <limit>
-          <lower>1e+16</lower>
-          <upper>-1e+16</upper>
+          <lower>-1e+16</lower> <!--default : 1e+16 -->
+          <upper>-1e+16</upper> <!--default : -1e+16 -->
         </limit>
+        <xyz>0 0 -1</xyz>
         <dynamics>
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
@@ -144,16 +146,17 @@
       <pose relative_to='mot0'>0 0 0 0 -0 0</pose>
       <inertial>
         <pose>7e-06 -1.2e-05 0.017767 0 -0 0</pose>
-        <mass>0.0136328</mass>
+        <mass>0.01</mass> <!--default :0.0136328 -->
         <inertia>
           <ixx>4.42921e-06</ixx>
           <ixy>9.45518e-10</ixy>
           <ixz>4.79661e-09</ixz>
           <iyy>4.42799e-06</iyy>
           <iyz>-2.84067e-08</iyz>
-          <izz>8.68181e-06</izz>_motor_model.so
-        </inertia>
+          <izz>8.68181e-06</izz>
+          </inertia>
       </inertial>
+      
       <box name='ccw-mot_collision'>
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
@@ -209,20 +212,24 @@
       <pose relative_to='ser1'>0 0 0 0 -0 0</pose>
       <inertial>
         <pose>4e-06 0.00321 0.020676 0 -0 0</pose>
-        <mass>0.0318045</mass>
+        <mass>0.0318045</mass> 
         <inertia>    
           <ixx>4.59504e-06</ixx>
           <ixy>1.40278e-09</ixy>
           <ixz>7.07896e-10</ixz>
-          <iyy>3.56647e-06</iyy><material>
+          <iyy>3.56647e-06</iyy>
+          
+          <material>
           <!--script>
             <name>Gazebo/Blue</name>
             <uri>__default__</uri>
           </script-->
+          
           <ambient>0 0 1</ambient>
           <diffuse>0 0 1</diffuse>
           <specular>0.1 0.1 0.1 1</specular>
         </material>
+        
           <iyz>-1.14994e-07</iyz>_motor_model.so
           <izz>5.80439e-06</izz>
         </inertia>
@@ -266,9 +273,10 @@
       <axis>
         <xyz>0 0 -1</xyz> <!-- 원래 값 : -1 -->
         <limit>
-          <lower>1e+16</lower>
-          <upper>-1e+16</upper>
+           <lower>1e+16</lower> <!--default : 1e+16 -->
+          <upper>1e+16</upper> <!--default : -1e+16 -->
         </limit>
+        <xyz>0 0 1</xyz>
         <dynamics>
           <spring_reference>0</spring_reference>
           <spring_stiffness>0</spring_stiffness>
@@ -279,7 +287,7 @@
       <pose relative_to='mot1'>0 0 0 0 -0 0</pose>
       <inertial>
         <pose>-0 9e-06 0.017847 0 -0 0</pose>
-        <mass>0.0136338</mass>
+        <mass>0.01</mass> <!--default :0.0136338, weight -->
         <inertia>
           <ixx>4.42778e-06</ixx>
           <ixy>6.06547e-11</ixy>
@@ -309,7 +317,7 @@
         <material>
           <script>
             <name>Gazebo/FlatBlack</name>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <uri>file://media/materials/scriptschild/gazebo.material</uri>
           </script>
           <ambient>0.1 0.1 0.1</ambient>
           <diffuse>0.1 0.1 0.1</diffuse>
@@ -321,7 +329,7 @@
       <velocity_decay/>
       
       <!-- ****************************************************PARTS LINE*********************************************** -->
-      
+    <!--  
       <link name='imu_link'>
       <inertial>
         <pose>0.002973 0.001387 0.095001 0 -0 0</pose>
@@ -343,7 +351,7 @@
       </sensor>
     </link>
     
-    <!-- ****************************************************PARTS LINE*********************************************** -->
+    ****************************************************PARTS LINE***********************************************
     
     <joint name='imu_joint' type='revolute'>
       <child>imu_link</child>
@@ -361,7 +369,43 @@
         </dynamics>
       </axis>
     </joint>
+    -->
     
+      <link name='imu_link'>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.15</mass>
+        <inertia>
+          <ixx>0.00002</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00002</iyy>
+          <iyz>0</iyz>
+          <izz>0.00002</izz>
+        </inertia>
+      </inertial>
+      <sensor name="imu_sensor" type="imu">
+        <pose>0 0 0 3.141593 0 -1.5707963</pose>
+        <always_on>1</always_on>
+        <update_rate>1000.0</update_rate>
+      </sensor>
+    </link>
     
+    <joint name='imu_joint' type='revolute'>
+      <child>imu_link</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+          <effort>0</effort>
+          <velocity>0</velocity>
+        </limit>
+        <dynamics>
+          <damping>1.0</damping>
+        </dynamics>
+      </axis>
+    </joint>
 </model>
 </sdf>
