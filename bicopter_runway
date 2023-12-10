@@ -1,3 +1,5 @@
+<!-- src/ardupilot_gazebo/worlds/ 실행 -->
+
 <?xml version="1.0" ?>
 <sdf version="1.9">
   <world name="bicopter_runway">
