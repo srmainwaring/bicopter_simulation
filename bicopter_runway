@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <sdf version="1.9">
   <world name="bicopter_runway">
+  
     <physics name="1ms" type="ignore">
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1.0</real_time_factor>
@@ -9,17 +10,13 @@
     <plugin filename="gz-sim-physics-system"
       name="gz::sim::systems::Physics">
     </plugin>
-    
-    <plugin filename="gz-sim-linearbatteryplugin-system"
-      name="gz::sim::systems::LinearBatteryPlugin">
-    </plugin>
-    
+
     <plugin
       filename="gz-sim-sensors-system"
       name="gz::sim::systems::Sensors">
       <render_engine>ogre2</render_engine>
     </plugin>
-    
+  
     <plugin filename="gz-sim-user-commands-system"
       name="gz::sim::systems::UserCommands">
     </plugin>
@@ -37,9 +34,9 @@
     </plugin>
 
     <scene>
-      <ambient>1.0 1.0 1.0</ambient>
+      <!--<ambient>1.0 1.0 1.0</ambient>
       <background>0.8 0.8 0.8</background>
-      <!-- <sky></sky> -->
+      <sky></sky> -->
     </scene>
 
     <spherical_coordinates>
@@ -86,7 +83,115 @@
           <pose>0 5 0.1 0 0 0</pose>
           <geometry>
             <box>
-              <size>0.01 10 0.01</size>
+              <size>0.01 10 0.01</size><?xml version="1.0" ?>
+<sdf version="1.9">
+  <world name="bicopter_runway">
+    <physics name="1ms" type="ignore">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <plugin filename="gz-sim-physics-system"
+      name="gz::sim::systems::Physics">
+    </plugin>
+    
+    <plugin filename="gz-sim-linearbatteryplugin-system"
+      name="gz::sim::systems::LinearBatteryPlugin">
+    </plugin>
+    
+    <plugin
+      filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    
+    <plugin filename="gz-sim-user-commands-system"
+      name="gz::sim::systems::UserCommands">
+    </plugin>
+    
+    <plugin filename="gz-sim-scene-broadcaster-system"
+      name="gz::sim::systems::SceneBroadcaster">
+    </plugin>
+    
+    <plugin filename="gz-sim-imu-system"
+      name="gz::sim::systems::Imu">
+    </plugin>
+    
+    <plugin filename="gz-sim-navsat-system"<?xml version="1.0" ?>
+<sdf version="1.9">
+  <world name="bicopter_runway">
+    <physics name="1ms" type="ignore">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <plugin filename="gz-sim-physics-system"
+      name="gz::sim::systems::Physics">
+    </plugin>
+    
+    <plugin filename="gz-sim-linearbatteryplugin-system"
+      name="gz::sim::systems::LinearBatteryPlugin">
+    </plugin>
+    
+    <plugin
+      filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    
+    <plugin filename="gz-sim-user-commands-system"
+      name="gz::sim::systems::UserCommands">
+    </plugin>
+    
+    <plugin filename="gz-sim-scene-broadcaster-system"
+      name="gz::sim::systems::SceneBroadcaster">
+    </plugin>
+    
+    <plugin filename="gz-sim-imu-system"
+      name="gz::sim::systems::Imu">
+    </plugin>
+    
+    <plugin filename="gz-sim-navsat-system"
+      name="gz::sim::systems::NavSat">
+
+      name="gz::sim::systems::NavSat">
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <world name="bicopter_runway">
+    <physics name="1ms" type="ignore">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <plugin filename="gz-sim-physics-system"
+      name="gz::sim::systems::Physics">
+    </plugin>
+    
+    <plugin filename="gz-sim-linearbatteryplugin-system"
+      name="gz::sim::systems::LinearBatteryPlugin">
+    </plugin>
+    
+    <plugin
+      filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    
+    <plugin filename="gz-sim-user-commands-system"
+      name="gz::sim::systems::UserCommands">
+    </plugin>
+    
+    <plugin filename="gz-sim-scene-broadcaster-system"
+      name="gz::sim::systems::SceneBroadcaster">
+    </plugin>
+    
+    <plugin filename="gz-sim-imu-system"
+      name="gz::sim::systems::Imu">
+    </plugin>
+    
+    <plugin filename="gz-sim-navsat-system"
+      name="gz::sim::systems::NavSat">
+
             </box>
           </geometry>
           <material>
@@ -117,17 +222,53 @@
           <update_rate>1</update_rate>
         </sensor>
         
-      </link>
+      </link><uri>model://wireframe</uri><?xml version="1.0" ?>
+<sdf version="1.9">
+  <world name="bicopter_runway">
+    <physics name="1ms" type="ignore">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+
+    <plugin filename="gz-sim-physics-system"
+      name="gz::sim::systems::Physics">
+    </plugin>
+    
+    <plugin filename="gz-sim-linearbatteryplugin-system"
+      name="gz::sim::systems::LinearBatteryPlugin">
+    </plugin>
+    
+    <plugin
+      filename="gz-sim-sensors-system"
+      name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+    
+    <plugin filename="gz-sim-user-commands-system"
+      name="gz::sim::systems::UserCommands">
+    </plugin>
+    
+    <plugin filename="gz-sim-scene-broadcaster-system"
+      name="gz::sim::systems::SceneBroadcaster">
+    </plugin>
+    
+    <plugin filename="gz-sim-imu-system"
+      name="gz::sim::systems::Imu">
+    </plugin>
+    
+    <plugin filename="gz-sim-navsat-system"
+      name="gz::sim::systems::NavSat">
+
     </model>
 
     <include>
       <uri>model://runway</uri>
       <pose degrees="true">-29 545 0 0 0 363</pose>
     </include>
-    
+
     <include>
       <uri>model://bicopter_with_ardupilot</uri>
-      <pose degrees="true">0 0 0.2 0 0 90</pose>
+      <pose degrees="true">0 0 0.2 0 0 0</pose>
     </include>
 
   </world>
