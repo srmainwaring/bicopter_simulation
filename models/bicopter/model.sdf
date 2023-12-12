@@ -57,15 +57,20 @@
     <link name="ccw_servo_link">
       <pose relative_to="ccw_servo_joint">0 0 0 0 0 0</pose>
       <inertial>
-        <pose>-5e-06 -0.003367 0.021721 0 0 0</pose>
+        <!-- <pose>-5e-06 -0.003367 0.021721 0 0 0</pose> -->
+        <pose>0 0 0 0 0 0</pose>
         <mass>0.032</mass> <!-- default : 0.0318045 -->
+        <!--
+          Estimate for inertial based on a solid box with dimensions:
+          <size>0.03 0.04 0.02</size>
+        -->
         <inertia>
-          <ixx>4.59202e-06</ixx>
-          <ixy>-7.94305e-11</ixy>
-          <ixz>-1.03122e-09</ixz>    
-          <iyy>3.56948e-06</iyy>
-          <iyz>1.17656e-07</iyz>
-          <izz>5.80439e-06</izz>
+          <ixx>5.33333E-06</ixx>    <!-- 4.59202e-06 -->
+          <ixy>0</ixy>              <!-- -7.94305e-11 -->
+          <ixz>0</ixz>              <!-- -1.03122e-09 -->
+          <iyy>3.46667E-06</iyy>    <!-- 3.56948e-06 -->
+          <iyz>0</iyz>              <!-- 1.17656e-07 -->
+          <izz>6.66667E-06</izz>    <!-- 5.80439e-06 -->
         </inertia>
       </inertial>
       <collision name="collision">
@@ -113,12 +118,12 @@
         <pose>7e-06 -1.2e-05 0.017767 0 0 0</pose>
         <mass>0.01</mass> <!--default :0.0136328 -->
         <inertia>
-          <ixx>4.42921e-06</ixx>
-          <ixy>9.45518e-10</ixy>
-          <ixz>4.79661e-09</ixz>
-          <iyy>4.42799e-06</iyy>
-          <iyz>-2.84067e-08</iyz>
-          <izz>8.68181e-06</izz>
+          <ixx>4.42921e-06</ixx>  <!-- 4.42921e-06-->
+          <ixy>0</ixy>            <!-- 9.45518e-10 -->
+          <ixz>0</ixz>            <!-- 4.79661e-09 -->
+          <iyy>4.42921e-06</iyy>  <!-- 4.42799e-06-->
+          <iyz>0</iyz>            <!-- -2.84067e-08 -->
+          <izz>8.68181e-06</izz>  <!-- 8.68181e-06 -->
           </inertia>
       </inertial>
       <collision name="collision">
@@ -164,25 +169,31 @@
     <link name="cw_servo_link">
       <pose relative_to="cw_servo_joint">0 0 0 0 0 0</pose>
       <inertial>
-        <pose>4e-06 0.00321 0.020676 0 0 0</pose>
-        <mass>0.0318045</mass> 
+        <!-- <pose>4e-06 0.00321 0.020676 0 0 0</pose> -->
+        <pose>0 0 0 0 0 0</pose>
+        <!-- <mass>0.0318045</mass>  -->
+        <mass>0.032</mass>
+        <!--
+          Estimate for inertial based on a solid box with dimensions:
+          <size>0.03 0.04 0.02</size>
+        -->
         <inertia>    
-          <ixx>4.59504e-06</ixx>
-          <ixy>1.40278e-09</ixy>
-          <ixz>7.07896e-10</ixz>
-          <iyy>3.56647e-06</iyy>
-          <iyz>-1.14994e-07</iyz>
-          <izz>5.80439e-06</izz>
+          <ixx>5.33333E-06</ixx>    <!-- 4.59504e-06 -->
+          <ixy>0</ixy>              <!-- 1.40278e-09 -->
+          <ixz>0</ixz>              <!-- 7.07896e-10 -->
+          <iyy>3.46667E-06</iyy>    <!-- 3.56647e-06 -->
+          <iyz>0</iyz>              <!-- -1.14994e-07 -->
+          <izz>6.66667E-06</izz>    <!-- 5.80439e-06 -->
         </inertia>
       </inertial>
-      <box name="collision">
+      <collision name="collision">
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
             <uri>model://bicopter/meshes/cw_servo.stl</uri>
           </mesh>
         </geometry>
-      </box>
+      </collision>
       <visual name="visual">
         <geometry>
           <mesh>
@@ -220,22 +231,22 @@
         <pose>0 9e-06 0.017847 0 0 0</pose>
         <mass>0.01</mass> <!--default :0.0136338, weight -->
         <inertia>
-          <ixx>4.42778e-06</ixx>
-          <ixy>6.06547e-11</ixy>
-          <ixz>1.00593e-08</ixz>
-          <iyy>4.42787e-06</iyy>
-          <iyz>2.69765e-08</iyz>
-          <izz>8.67976e-06</izz>
+          <ixx>4.42921e-06</ixx>  <!-- 4.42778e-06 -->
+          <ixy>0</ixy>            <!-- 6.06547e-11 -->
+          <ixz>0</ixz>            <!-- 1.00593e-08 -->
+          <iyy>4.42921e-06</iyy>  <!-- 4.42787e-06 -->
+          <iyz>0</iyz>            <!-- 2.69765e-08 -->
+          <izz>8.68181e-06</izz>  <!-- 8.67976e-06 -->
         </inertia>
       </inertial>
-      <box name="collision"> <!--"cw-mot_box" -->
+      <collision name="collision"> <!--"cw-mot_box" -->
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
             <uri>model://bicopter/meshes/cw_mot.stl</uri>
           </mesh>
         </geometry>
-      </box>
+      </collision>
       <visual name="visual">
         <geometry>
           <mesh>
@@ -262,23 +273,23 @@
         </limit>
         <xyz>0 0 1</xyz>
         <dynamics>
-          <spring_reference>0</spring_reference>
-          <spring_stiffness>0</spring_stiffness>
+          <dampint>0.01</dampint>
         </dynamics>
       </axis>
     </joint>
 
     <!-- sensors -->
     <link name="imu_link">
+      <pose>0 0 0.08 0 0 0</pose>
       <inertial>
-        <mass>0.15</mass>
+        <mass>0.05</mass>
         <inertia>
-          <ixx>0.00002</ixx>
+          <ixx>1.33333E-05</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>0.00002</iyy>
+          <iyy>1.33333E-05</iyy>
           <iyz>0</iyz>
-          <izz>0.00002</izz>
+          <izz>1.33333E-05</izz>
         </inertia>
       </inertial>
       <sensor name="imu_sensor" type="imu">
@@ -312,13 +323,13 @@
         filename="gz-sim-joint-position-controller-system">
       <joint_name>ccw_servo_joint</joint_name>
       <topic>/ccw_servo_joint/cmd_pos</topic>
-      <p_gain>1</p_gain>
+      <p_gain>0.3</p_gain>
       <i_gain>0</i_gain>
-      <d_gain>0</d_gain>
+      <d_gain>0.001</d_gain>
       <i_max>1</i_max>
       <i_min>-1</i_min>
-      <cmd_max>5</cmd_max>
-      <cmd_min>-5</cmd_min>
+      <cmd_max>2.5</cmd_max>
+      <cmd_min>-2.5</cmd_min>
     </plugin>
 
     <!-- right servo (cw prop) -->
@@ -326,40 +337,38 @@
         filename="gz-sim-joint-position-controller-system">
       <joint_name>cw_servo_joint</joint_name>
       <topic>/cw_servo_joint/cmd_pos</topic>
-      <p_gain>1</p_gain>
+      <p_gain>0.3</p_gain>
       <i_gain>0</i_gain>
-      <d_gain>0</d_gain>
+      <d_gain>0.001</d_gain>
       <i_max>1</i_max>
       <i_min>-1</i_min>
-      <cmd_max>5</cmd_max>
-      <cmd_min>-5</cmd_min>
+      <cmd_max>2.5</cmd_max>
+      <cmd_min>-2.5</cmd_min>
     </plugin>
 
     <!-- left motor thruster (ccw), assume 5 inch props -->
-    <plugin name="gz::sim::systems::Thruster"
+    <!-- <plugin name="gz::sim::systems::Thruster"
       filename="gz-sim-thruster-system">
       <namespace>bicopter</namespace>
       <joint_name>ccw_mot_joint</joint_name>
-      <thrust_coefficient>0.02</thrust_coefficient>
+      <thrust_coefficient>0.001</thrust_coefficient>
       <fluid_density>1.2041</fluid_density>
       <propeller_diameter>0.127</propeller_diameter>
       <velocity_control>0</velocity_control>
       <use_angvel_cmd>0</use_angvel_cmd>
-    </plugin>
+    </plugin> -->
 
     <!-- right motor thruster (cw), assume 5 inch props -->
-    <plugin name="gz::sim::systems::Thruster"
+    <!-- <plugin name="gz::sim::systems::Thruster"
       filename="gz-sim-thruster-system">
       <namespace>bicopter</namespace>
       <joint_name>cw_mot_joint</joint_name>
-      <thrust_coefficient>-0.02</thrust_coefficient>
+      <thrust_coefficient>-0.001</thrust_coefficient>
       <fluid_density>1.2041</fluid_density>
       <propeller_diameter>0.127</propeller_diameter>
       <velocity_control>0</velocity_control>
       <use_angvel_cmd>0</use_angvel_cmd>
-    </plugin>
-
-
+    </plugin> -->
 
   </model>
 </sdf>
