@@ -81,10 +81,7 @@
 
     <!-- plugins -->
       
-    <plugin filename="gz-sim-joint-state-publisher-system"
-      name="gz::sim::systems::JointStatePublisher">
-    </plugin>
-    
+
     <plugin filename="libgz-sim-lift-drag-system"
         name="gz::sim::systems::LiftDrag">
       <a0>0.3</a0> <!-- default : 0.3 -->
@@ -100,25 +97,7 @@
       <cp>0.084 0 0</cp>
       <forward>0 1 0</forward>
       <upward>0 0 1</upward>
-      <link_name>bicopter_with_standoffs::cw-mot</link_name>
-    </plugin>
-    
-     <plugin filename="gz-sim-lift-drag-system"
-        name="gz::sim::systems::LiftDrag">
-      <a0>0.3</a0> <!-- default : 0.3 -->
-      <alpha_stall>1.4</alpha_stall>
-      <cla>4.2500</cla>
-      <cda>0.10</cda>
-      <cma>0.00</cma>
-      <cla_stall>-0.025</cla_stall>
-      <cda_stall>0.0</cda_stall>
-      <cma_stall>0.0</cma_stall>
-      <area>0.002</area>
-      <air_density>1.2041</air_density>
-      <cp>-0.084 0 0</cp>
-      <forward>0 -1 0</forward>
-      <upward>0 0 1</upward>
-      <link_name>bicopter_with_standoffs::cw-mot</link_name>
+      <link_name>bicopter_with_standoffs::cw_mot_link</link_name>
     </plugin>
 
     <plugin filename="gz-sim-lift-drag-system"
@@ -136,7 +115,7 @@
       <cp>0.084 0 0</cp>
       <forward>0 1 0</forward>
       <upward>0 0 1</upward>
-      <link_name>bicopter_with_standoffs::ccw-mot</link_name>
+      <link_name>bicopter_with_standoffs::cw_mot_link</link_name>
     </plugin>
     
         <plugin filename="gz-sim-lift-drag-system"
@@ -145,37 +124,57 @@
       <alpha_stall>1.4</alpha_stall>
       <cla>4.2500</cla>
       <cda>0.10</cda>
-      <cma>0.00</cma>
+      <cma>0.00</cma><!-- battery plugin add -->
       <cla_stall>-0.025</cla_stall>
       <cda_stall>0.0</cda_stall>
       <cma_stall>0.0</cma_stall>
       <area>0.002</area>
       <air_density>1.2041</air_density>
-      <cp>-0.084 0 0</cp>
-      <forward>0 -1 0</forward>
+      <cp>0.084 0 0</cp>
+      <forward>0 1 0</forward>
       <upward>0 0 1</upward>
-      <link_name>bicopter_with_standoffs::ccw-mot</link_name>
+      <link_name>bicopter_with_standoffs::ccw_mot_link</link_name>
     </plugin>
+
+    <plugin filename="gz-sim-lift-drag-system"
+        name="gz::sim::systems::LiftDrag">
+      <a0>0.3</a0> <!-- default : 0.3 -->
+      <alpha_stall>1.4</alpha_stall>
+      <cla>4.2500</cla>
+      <cda>0.10</cda>
+      <cma>0.00</cma><!-- battery plugin add -->
+      <cla_stall>-0.025</cla_stall>
+      <cda_stall>0.0</cda_stall>
+      <cma_stall>0.0</cma_stall>
+      <area>0.002</area>
+      <air_density>1.2041</air_density>
+      <cp>0.084 0 0</cp>
+      <forward>0 1 0</forward>
+      <upward>0 0 1</upward>
+      <link_name>bicopter_with_standoffs::ccw_mot_link</link_name>
+    </plugin>
+
     
     Segmentation fault (Address not mapped to object [0x10])
+
     <plugin filename="gz-sim-apply-joint-force-system"
       name="gz::sim::systems::ApplyJointForce">
-      <joint_name>bicopter_with_standoffs::mot0</joint_name>
+      <joint_name>bicopter_with_standoffs::ccw_mot_joint</joint_name>
     </plugin>
     
     <plugin filename="gz-sim-apply-joint-force-system"
       name="gz::sim::systems::ApplyJointForce">
-      <joint_name>bicopter_with_standoffs::mot1</joint_name>
+      <joint_name>bicopter_with_standoffs::cw_mot_joint</joint_name>
     </plugin>
     
     <plugin filename="libgz-sim-apply-joint-force-system.so"
       name="gz::sim::systems::ApplyJointForce">
-      <joint_name>bicopter_with_standoffs::ser0</joint_name>
+      <joint_name>bicopter_with_standoffs::ccw_servo_joint</joint_name>
     </plugin>
     
     <plugin filename="libgz-sim-apply-joint-force-system.so"
       name="gz::sim::systems::ApplyJointForce">
-      <joint_name>bicopter_with_standoffs::ser1</joint_name>
+      <joint_name>bicopter_with_standoffs::cw_servo_joint</joint_name>
     </plugin>
       
     <plugin name="ArduPilotPlugin" filename="libArduPilotPlugin.so">
@@ -207,6 +206,7 @@
         <power_load>2.1</power_load>
         <start_on_motion>true</start_on_motion>
         </plugin>
+        
         <have_32_channels>0</have_32_channels>
         
        <!-- battery plugin add -->
@@ -222,7 +222,7 @@
         -->
 
       <control channel="0">
-        <jointName>bicopter_with_standoffs::mot0</jointName>
+        <jointName>bicopter_with_standoffs::ccw_mot_joint</jointName>
         <useForce>1</useForce>
         <multiplier>900</multiplier>
         <offset>0</offset>
@@ -240,8 +240,8 @@
       </control>
 
       <control channel="1">
-        <jointName>bicopter_with_standoffs::mot1</jointName>
-        <useForce>1</useForce><controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
+        <jointName>bicopter_with_standoffs::cw_mot_joint_joint</jointName>
+        <useForce>1</useForce>
         <multiplier>900</multiplier>
         <offset>0</offset>
         <servo_min>1100</servo_min>
@@ -258,7 +258,7 @@
       </control>
       
       <control channel="2">
-        <jointName>bicopter_with_standoffs::ser0</jointName>
+        <jointName>bicopter_with_standoffs::ccw_servo_joint</jointName>
         <useForce>1</useForce>
         <multiplier>-2.094395</multiplier>
         <offset>-0.5</offset>
@@ -276,9 +276,9 @@
       </control>
 
       <control channel="3">
-        <jointName>bicopter_with_standoffs::ser1</jointName>
+        <jointName>bicopter_with_standoffs::cw_servo_joint</jointName>
         <useForce>1</useForce>
-        <multiplier>2.094395</multiplier><controlVelocitySlowdownSim>1</controlVelocitySlowdownSim>
+        <multiplier>2.094395</multiplier>
         <offset>-0.5</offset>
         <servo_min>1100</servo_min>
         <servo_max>1900</servo_max>
