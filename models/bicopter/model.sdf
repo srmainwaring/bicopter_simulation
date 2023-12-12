@@ -1,4 +1,20 @@
 <?xml version="1.0"?>
+<!--
+  Joint controllers
+
+  Move left (ccw) tilt servo
+    gz topic -t "/ccw_servo_joint/cmd_pos" -m gz.msgs.Double -p "data: 0.5"
+
+  Move right (cw) tilt servo
+    gz topic -t "/cw_servo_joint/cmd_pos" -m gz.msgs.Double -p "data: 0.5"
+
+  Command left motor angulkar velocity (ccw)
+    gz topic -t "/model/bicopter/joint/ccw_mot_joint/cmd_vel" -m gz.msgs.Double -p "data: -10.0"
+
+  Command right motor angular velocity (cw)
+    gz topic -t "/model/bicopter/joint/cw_mot_joint/cmd_vel" -m gz.msgs.Double -p "data: 10.0"
+
+-->
 <sdf version="1.9"> 
   <model name="bicopter">
     <pose>0 0 0 0 0 0</pose> <!--원래 값 0 0 0.194923 0 0 0 -->
@@ -346,29 +362,36 @@
       <cmd_min>-2.5</cmd_min>
     </plugin>
 
-    <!-- left motor thruster (ccw), assume 5 inch props -->
-    <!-- <plugin name="gz::sim::systems::Thruster"
-      filename="gz-sim-thruster-system">
-      <namespace>bicopter</namespace>
+    <!-- left motor (ccw prop) -->
+    <plugin name="gz::sim::systems::JointController"
+      filename="gz-sim-joint-controller-system">
       <joint_name>ccw_mot_joint</joint_name>
-      <thrust_coefficient>0.001</thrust_coefficient>
-      <fluid_density>1.2041</fluid_density>
-      <propeller_diameter>0.127</propeller_diameter>
-      <velocity_control>0</velocity_control>
-      <use_angvel_cmd>0</use_angvel_cmd>
-    </plugin> -->
+      <initial_velocity>0.0</initial_velocity>
+      <use_force_commands>false</use_force_commands>
+      <p_gain>0.01</p_gain>
+      <i_gain>0.0</i_gain>
+      <d_gain>0.0</d_gain>
+      <i_max>1</i_max>
+      <i_min>-1</i_min>
+      <cmd_max>2.5</cmd_max>
+      <cmd_min>-2.5</cmd_min>
+    </plugin>
 
-    <!-- right motor thruster (cw), assume 5 inch props -->
-    <!-- <plugin name="gz::sim::systems::Thruster"
-      filename="gz-sim-thruster-system">
-      <namespace>bicopter</namespace>
+    <!-- left motor (cw prop) -->
+    <plugin name="gz::sim::systems::JointController"
+      filename="gz-sim-joint-controller-system">
       <joint_name>cw_mot_joint</joint_name>
-      <thrust_coefficient>-0.001</thrust_coefficient>
-      <fluid_density>1.2041</fluid_density>
-      <propeller_diameter>0.127</propeller_diameter>
-      <velocity_control>0</velocity_control>
-      <use_angvel_cmd>0</use_angvel_cmd>
-    </plugin> -->
+      <initial_velocity>0.0</initial_velocity>
+      <use_force_commands>false</use_force_commands>
+      <p_gain>0.01</p_gain>
+      <i_gain>0.0</i_gain>
+      <d_gain>0.0</d_gain>
+      <i_max>1</i_max>
+      <i_min>-1</i_min>
+      <cmd_max>2.5</cmd_max>
+      <cmd_min>-2.5</cmd_min>
+    </plugin>
+
 
   </model>
 </sdf>
