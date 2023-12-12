@@ -1,18 +1,24 @@
 <?xml version="1.0"?>
 <sdf version="1.9"> 
   <model name="bicopter">
-    <pose>0 0 0.1 0 0 0</pose> <!--원래 값 0 0 0.194923 0 0 0 -->
+    <pose>0 0 0 0 0 0</pose> <!--원래 값 0 0 0.194923 0 0 0 -->
     <link name="base_link">
       <inertial>
-        <pose>0.002973 0.001387 0.095001 0 0 0</pose> <!--Default : 0.002973 0.001387 0.095001 0 0 0-->
-        <mass>0.02</mass> <!--원래 값 mass 0.390996-->
+        <!-- <pose>0.002973 0.001387 0.095001 0 0 0</pose> --> <!--Default : 0.002973 0.001387 0.095001 0 0 0-->
+        <pose>0.002973 0 0.08 0 0 0</pose>
+        <!-- <mass>0.02</mass> --> <!--원래 값 mass 0.390996-->
+        <!--
+          Estimate for inertial based on a solid box with dimensions:
+          <size>0.16 0.12 0.10</size>
+        -->
+        <mass>0.40</mass>
         <inertia>
-          <ixx>0.00019185</ixx>
-          <ixy>4.02647e-07</ixy>
-          <ixz>-7.71289e-06</ixz> <!--원래 값 -7.71289e-06 -->
-          <iyy>0.000465506</iyy>
-          <iyz>-7.27837e-14</iyz> <!--원래 값 -7.27837e-14 -->
-          <izz>0.000526809</izz>
+          <ixx>0.000813333</ixx>  <!--원래 값 0.00019185 -->
+          <ixy>0</ixy>
+          <ixz>0</ixz>            <!--원래 값 -7.71289e-06 -->
+          <iyy>0.001186667</iyy>  <!--원래 값 0.000465506 -->
+          <iyz>0</iyz>            <!--원래 값 -7.27837e-14 -->
+          <izz>0.001333333</izz>  <!--원래 값 0.000526809 -->
         </inertia>
       </inertial>
       <collision name="collision"> <!--Default : collision 오류 발생으로 _box 로 변경 -->
@@ -22,6 +28,15 @@
             <uri>model://bicopter/meshes/base.stl</uri>
           </mesh>
         </geometry>
+        <!--
+          Collision approximation:
+        -->
+        <!-- <pose>0 0 0.08 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.16 0.26 0.16</size>
+          </box>
+        </geometry> -->
       </collision>
       <visual name="visual">
         <geometry>
