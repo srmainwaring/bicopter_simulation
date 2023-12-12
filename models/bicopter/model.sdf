@@ -129,9 +129,9 @@
       <parent>base_link</parent>
       <child>ccw_servo_link</child>
       <axis>
-        <xyz>0 -1 0</xyz> <!-- default : 0 -1 0 0 0 0 -->
+        <xyz>0 -1 0</xyz>
         <limit>    
-          <lower>-0.5</lower> <!-- default : lower -0.5, upper 0.5 -->
+          <lower>-0.5</lower>
           <upper>0.5</upper>
         </limit>
         <dynamics>
@@ -177,15 +177,15 @@
         </material>
       </visual>
     </link>
-    <joint name="ccw_mot_joint" type="revolute"> <!-- 기수 기준, Left motor -->
+    <joint name="ccw_mot_joint" type="revolute">
       <pose relative_to="ccw_servo_link">0 -0.004 0.0425 0 0 0</pose>
       <parent>ccw_servo_link</parent>
       <child>ccw_mot_link</child>
       <axis>
         <xyz>0 0 -1</xyz>
         <limit>
-          <lower>-1e+16</lower> <!--default : 1e+16 -->
-          <upper>1e+16</upper> <!--default : -1e+16 -->
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
         </limit>
         <dynamics>
           <damping>0.004</damping>
@@ -243,7 +243,7 @@
       <axis>    
         <xyz>0 1 0</xyz>
         <limit>
-          <lower>-0.5</lower> <!-- 정규 값 : lower -0.5, upper 0.5 -->
+          <lower>-0.5</lower>
           <upper>0.5</upper>
         </limit>
         <dynamics>
@@ -289,15 +289,15 @@
         </material>
       </visual>
       </link>
-    <joint name="cw_mot_joint" type="revolute"> <!-- 기수 기준, Right motor --> 
+    <joint name="cw_mot_joint" type="revolute"> 
       <pose relative_to="cw_servo_link">0 0.003829 0.041455 0 0 0</pose>
       <parent>cw_servo_link</parent>
       <child>cw_mot_link</child>
       <axis>
-        <xyz>0 0 -1</xyz> <!-- 원래 값 : -1 -->
+        <xyz>0 0 -1</xyz>
         <limit>
-          <lower>-1e+16</lower> <!--default : 1e+16 -->
-          <upper>1e+16</upper> <!--default : -1e+16 -->
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
         </limit>
         <dynamics>
           <damping>0.004</damping>
