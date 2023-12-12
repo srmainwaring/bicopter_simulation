@@ -388,7 +388,7 @@
       <cmd_min>-2.5</cmd_min>
     </plugin>
 
-    <!-- left motor (cw prop) -->
+    <!-- right motor (cw prop) -->
     <plugin name="gz::sim::systems::JointController"
       filename="gz-sim-joint-controller-system">
       <joint_name>cw_mot_joint</joint_name>
