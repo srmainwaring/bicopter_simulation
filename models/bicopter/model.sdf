@@ -1,0 +1,290 @@
+<?xml version="1.0"?>
+<sdf version="1.9"> 
+  <model name="bicopter">
+    <pose>0 0 0.1 0 0 0</pose> <!--원래 값 0 0 0.194923 0 0 0 -->
+    <link name="base_link">
+      <inertial>
+        <pose>0.002973 0.001387 0.095001 0 0 0</pose> <!--Default : 0.002973 0.001387 0.095001 0 0 0-->
+        <mass>0.02</mass> <!--원래 값 mass 0.390996-->
+        <inertia>
+          <ixx>0.00019185</ixx>
+          <ixy>4.02647e-07</ixy>
+          <ixz>-7.71289e-06</ixz> <!--원래 값 -7.71289e-06 -->
+          <iyy>0.000465506</iyy>
+          <iyz>-7.27837e-14</iyz> <!--원래 값 -7.27837e-14 -->
+          <izz>0.000526809</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision"> <!--Default : collision 오류 발생으로 _box 로 변경 -->
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bicopter/meshes/base.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bicopter/meshes/base.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.5 0.5 0.5 1</ambient> <!-- default : 1 1 1 1 -->
+          <diffuse>0.5 0.5 0.5 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+        </material>
+      </visual>
+    </link>
+    
+    <!-- left servo (ccw) -->
+    <link name="ccw_servo_link">
+      <pose relative_to="ccw_servo_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>-5e-06 -0.003367 0.021721 0 0 0</pose>
+        <mass>0.032</mass> <!-- default : 0.0318045 -->
+        <inertia>
+          <ixx>4.59202e-06</ixx>
+          <ixy>-7.94305e-11</ixy>
+          <ixz>-1.03122e-09</ixz>    
+          <iyy>3.56948e-06</iyy>
+          <iyz>1.17656e-07</iyz>
+          <izz>5.80439e-06</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bicopter/meshes/ccw_servo.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bicopter/meshes/ccw_servo.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.5 0.5 0.5</ambient>
+          <diffuse>0.5 0.5 0.5</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+        </material>
+      </visual>
+    </link>
+    <joint name="ccw_servo_joint" type="revolute">
+      <pose relative_to="base_link">0.010312 0.15468 0.15176 0.018488 0 3.14159</pose>
+      <parent>base_link</parent>
+      <child>ccw_servo_link</child>
+      <axis>
+        <xyz>0 -1 0</xyz> <!-- default : 0 -1 0 0 0 0 -->
+        <limit>    
+          <lower>-0.5</lower> <!-- default : lower -0.5, upper 0.5 -->
+          <upper>0.5</upper>
+        </limit>
+        <dynamics>
+          <damping>0.01</damping>
+        </dynamics>
+      </axis>      
+    </joint>
+
+    <!-- left motor (ccw) -->
+    <link name="ccw_mot_link">
+      <pose relative_to="ccw_mot_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>7e-06 -1.2e-05 0.017767 0 0 0</pose>
+        <mass>0.01</mass> <!--default :0.0136328 -->
+        <inertia>
+          <ixx>4.42921e-06</ixx>
+          <ixy>9.45518e-10</ixy>
+          <ixz>4.79661e-09</ixz>
+          <iyy>4.42799e-06</iyy>
+          <iyz>-2.84067e-08</iyz>
+          <izz>8.68181e-06</izz>
+          </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <mesh>    
+            <scale>1 1 1</scale>
+            <uri>model://bicopter/meshes/ccw_mot.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bicopter/meshes/ccw_mot.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 1 1</ambient>
+          <diffuse>0 0 1 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+        </material>
+      </visual>
+    </link>
+    <joint name="ccw_mot_joint" type="revolute"> <!-- 기수 기준, Left motor -->
+      <pose relative_to="ccw_servo_link">0 -0.004 0.0425 0 0 0</pose>
+      <parent>ccw_servo_link</parent>
+      <child>ccw_mot_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz>
+        <limit>
+          <lower>-1e+16</lower> <!--default : 1e+16 -->
+          <upper>1e+16</upper> <!--default : -1e+16 -->
+        </limit>
+        <xyz>0 0 -1</xyz>
+        <dynamics>
+          <damping>0.01</damping>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <!-- right servo (cw) -->
+    <link name="cw_servo_link">
+      <pose relative_to="cw_servo_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>4e-06 0.00321 0.020676 0 0 0</pose>
+        <mass>0.0318045</mass> 
+        <inertia>    
+          <ixx>4.59504e-06</ixx>
+          <ixy>1.40278e-09</ixy>
+          <ixz>7.07896e-10</ixz>
+          <iyy>3.56647e-06</iyy>
+          <iyz>-1.14994e-07</iyz>
+          <izz>5.80439e-06</izz>
+        </inertia>
+      </inertial>
+      <box name="collision">
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bicopter/meshes/cw_servo.stl</uri>
+          </mesh>
+        </geometry>
+      </box>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bicopter/meshes/cw_servo.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.5 0.5 0.5</ambient>
+          <diffuse>0.5 0.5 0.5</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+        </material>
+      </visual>
+    </link>
+    <joint name="cw_servo_joint" type="revolute">
+      <pose relative_to="base_link">0.010312 -0.14923 0.15181 -0.018488 0 -3.14159</pose>
+      <parent>base_link</parent>
+      <child>cw_servo_link</child>
+      <axis>    
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-0.5</lower> <!-- 정규 값 : lower -0.5, upper 0.5 -->
+          <upper>0.5</upper>
+        </limit>
+        <dynamics>
+          <damping>0.01</damping>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <!-- right motor (cw) -->
+    <link name="cw_mot_link">
+      <pose relative_to="cw_mot_joint">0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 9e-06 0.017847 0 0 0</pose>
+        <mass>0.01</mass> <!--default :0.0136338, weight -->
+        <inertia>
+          <ixx>4.42778e-06</ixx>
+          <ixy>6.06547e-11</ixy>
+          <ixz>1.00593e-08</ixz>
+          <iyy>4.42787e-06</iyy>
+          <iyz>2.69765e-08</iyz>
+          <izz>8.67976e-06</izz>
+        </inertia>
+      </inertial>
+      <box name="collision"> <!--"cw-mot_box" -->
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bicopter/meshes/cw_mot.stl</uri>
+          </mesh>
+        </geometry>
+      </box>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://bicopter/meshes/cw_mot.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 1 0</ambient>
+          <diffuse>0 1 0</diffuse>
+          <specular>0.1 0.1 0.1 1.0</specular>
+        </material>
+      </visual>
+      </link>
+    <joint name="cw_mot_joint" type="revolute"> <!-- 기수 기준, Right motor --> 
+      <pose relative_to="cw_servo_link">0 0.003829 0.041455 0 0 0</pose>
+      <parent>cw_servo_link</parent>
+      <child>cw_mot_link</child>
+      <axis>
+        <xyz>0 0 -1</xyz> <!-- 원래 값 : -1 -->
+        <limit>
+          <lower>-1e+16</lower> <!--default : 1e+16 -->
+          <upper>1e+16</upper> <!--default : -1e+16 -->
+        </limit>
+        <xyz>0 0 1</xyz>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+
+    <!-- sensors -->
+    <link name="imu_link">
+      <inertial>
+        <mass>0.15</mass>
+        <inertia>
+          <ixx>0.00002</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00002</iyy>
+          <iyz>0</iyz>
+          <izz>0.00002</izz>
+        </inertia>
+      </inertial>
+      <sensor name="imu_sensor" type="imu">
+        <pose degrees="true">0 0 0 180 0 -90</pose>
+        <always_on>1</always_on>
+        <update_rate>1000.0</update_rate>
+      </sensor>
+    </link>
+    <joint name="imu_joint" type="revolute">
+      <child>imu_link</child>
+      <parent>base_link</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0</upper>
+        </limit>
+        <dynamics>
+          <damping>1.0</damping>
+        </dynamics>
+      </axis>
+    </joint>
+  </model>
+</sdf>
