@@ -286,5 +286,65 @@
         </dynamics>
       </axis>
     </joint>
+
+    <!-- plugins -->
+    <plugin name="gz::sim::systems::JointStatePublisher"
+        filename="gz-sim-joint-state-publisher-system">
+    </plugin>
+
+    <!-- left servo (ccw prop) -->
+    <plugin name="gz::sim::systems::JointPositionController"
+        filename="gz-sim-joint-position-controller-system">
+      <joint_name>ccw_servo_joint</joint_name>
+      <topic>/ccw_servo_joint/cmd_pos</topic>
+      <p_gain>1</p_gain>
+      <i_gain>0</i_gain>
+      <d_gain>0</d_gain>
+      <i_max>1</i_max>
+      <i_min>-1</i_min>
+      <cmd_max>5</cmd_max>
+      <cmd_min>-5</cmd_min>
+    </plugin>
+
+    <!-- right servo (cw prop) -->
+    <plugin name="gz::sim::systems::JointPositionController"
+        filename="gz-sim-joint-position-controller-system">
+      <joint_name>cw_servo_joint</joint_name>
+      <topic>/cw_servo_joint/cmd_pos</topic>
+      <p_gain>1</p_gain>
+      <i_gain>0</i_gain>
+      <d_gain>0</d_gain>
+      <i_max>1</i_max>
+      <i_min>-1</i_min>
+      <cmd_max>5</cmd_max>
+      <cmd_min>-5</cmd_min>
+    </plugin>
+
+    <!-- left motor thruster (ccw), assume 5 inch props -->
+    <plugin name="gz::sim::systems::Thruster"
+      filename="gz-sim-thruster-system">
+      <namespace>bicopter</namespace>
+      <joint_name>ccw_mot_joint</joint_name>
+      <thrust_coefficient>0.02</thrust_coefficient>
+      <fluid_density>1.2041</fluid_density>
+      <propeller_diameter>0.127</propeller_diameter>
+      <velocity_control>0</velocity_control>
+      <use_angvel_cmd>0</use_angvel_cmd>
+    </plugin>
+
+    <!-- right motor thruster (cw), assume 5 inch props -->
+    <plugin name="gz::sim::systems::Thruster"
+      filename="gz-sim-thruster-system">
+      <namespace>bicopter</namespace>
+      <joint_name>cw_mot_joint</joint_name>
+      <thrust_coefficient>-0.02</thrust_coefficient>
+      <fluid_density>1.2041</fluid_density>
+      <propeller_diameter>0.127</propeller_diameter>
+      <velocity_control>0</velocity_control>
+      <use_angvel_cmd>0</use_angvel_cmd>
+    </plugin>
+
+
+
   </model>
 </sdf>
