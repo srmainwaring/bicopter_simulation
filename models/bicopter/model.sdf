@@ -66,6 +66,14 @@
             <size>0.16 0.26 0.16</size>
           </box>
         </geometry> -->
+        <surface>
+          <friction>
+            <ode>
+              <mu>1.0</mu>
+              <mu2>1.0</mu2>
+            </ode>
+          </friction>
+        </surface>
       </collision>
       <visual name="visual">
         <geometry>
