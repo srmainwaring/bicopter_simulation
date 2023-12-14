@@ -193,7 +193,7 @@
       <parent>ccw_servo_link</parent>
       <child>ccw_mot_link</child>
       <axis>
-        <xyz>0 0 -1</xyz>
+        <xyz>0 0 1</xyz>
         <limit>
           <lower>-1e+16</lower>
           <upper>1e+16</upper>
@@ -305,7 +305,7 @@
       <parent>cw_servo_link</parent>
       <child>cw_mot_link</child>
       <axis>
-        <xyz>0 0 -1</xyz>
+        <xyz>0 0 1</xyz>
         <limit>
           <lower>-1e+16</lower>
           <upper>1e+16</upper>
@@ -415,7 +415,7 @@
     </plugin> -->
 
     <!-- prop left (ccw) lift-drag -->
-    <plugin name="gz::sim::systems::LiftDrag"
+    <!-- <plugin name="gz::sim::systems::LiftDrag"
       filename="gz-sim-lift-drag-system">
       <a0>0.3</a0>
       <alpha_stall>1.4</alpha_stall>
@@ -465,10 +465,10 @@
       <forward>0.866025404 -0.5 0</forward>
       <upward>0 0 1</upward>
       <link_name>ccw_mot_link</link_name>
-    </plugin>
+    </plugin> -->
 
-    <!-- prop right (ccw) lift-drag -->
-    <plugin name="gz::sim::systems::LiftDrag"
+    <!-- prop right (cw) lift-drag -->
+    <!-- <plugin name="gz::sim::systems::LiftDrag"
       filename="gz-sim-lift-drag-system">
       <a0>0.3</a0>
       <alpha_stall>1.4</alpha_stall>
@@ -518,6 +518,48 @@
       <forward>-0.866025404 0.5 0</forward>
       <upward>0 0 1</upward>
       <link_name>cw_mot_link</link_name>
+    </plugin> -->
+
+    <!-- prop left (ccw) lift-drag -->
+    <plugin name="gz::sim::systems::MulticopterMotorModel"
+      filename="gz-sim-multicopter-motor-model-system">
+      <robotNamespace></robotNamespace>
+      <jointName>ccw_mot_joint</jointName>
+      <linkName>ccw_mot_link</linkName>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>800.0</maxRotVelocity>
+      <motorConstant>8.54858e-06</motorConstant>
+      <momentConstant>0.016</momentConstant>
+      <commandSubTopic>/world/runway/model/bicopter_with_ardupilot/actuators/cmd</commandSubTopic>
+      <actuator_number>0</actuator_number>
+      <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <motorSpeedPubTopic>motor_speed/0</motorSpeedPubTopic>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+
+    <!-- prop right (cw) lift-drag -->
+    <plugin name="gz::sim::systems::MulticopterMotorModel"
+      filename="gz-sim-multicopter-motor-model-system">
+      <robotNamespace></robotNamespace>
+      <jointName>cw_mot_joint</jointName>
+      <linkName>cw_mot_link</linkName>
+      <turningDirection>cw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>800.0</maxRotVelocity>
+      <motorConstant>8.54858e-06</motorConstant>
+      <momentConstant>0.016</momentConstant>
+      <commandSubTopic>/world/runway/model/bicopter_with_ardupilot/actuators/cmd</commandSubTopic>
+      <actuator_number>1</actuator_number>
+      <rotorDragCoefficient>8.06428e-05</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <motorSpeedPubTopic>motor_speed/1</motorSpeedPubTopic>
+      <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
     </plugin>
 
   </model>
