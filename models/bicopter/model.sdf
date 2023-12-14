@@ -414,7 +414,7 @@
       <cmd_min>-2.5</cmd_min>
     </plugin> -->
 
-    <!-- left (ccw) lift-drag -->
+    <!-- prop left (ccw) lift-drag -->
     <plugin name="gz::sim::systems::LiftDrag"
       filename="gz-sim-lift-drag-system">
       <a0>0.3</a0>
@@ -467,7 +467,7 @@
       <link_name>ccw_mot_link</link_name>
     </plugin>
 
-    <!-- prop_left (cw) lift-drag (ArduPilot motor 2) -->
+    <!-- prop right (ccw) lift-drag -->
     <plugin name="gz::sim::systems::LiftDrag"
       filename="gz-sim-lift-drag-system">
       <a0>0.3</a0>
