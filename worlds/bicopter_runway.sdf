@@ -45,7 +45,7 @@
     </light>
 
     <!-- ENU axes -->
-    <model name="axes">
+    <!-- <model name="axes">
       <static>1</static>
       <link name="link">
         <visual name="r">
@@ -91,9 +91,9 @@
           </material>
         </visual>
       </link>
-    </model>
+    </model> -->
 
-    <model name="box">
+    <!-- <model name="box">
       <static>true</static>
       <pose degrees="true">-0.7 0 -0.325 0 20 0</pose>
       <link name="base_link">
@@ -117,7 +117,7 @@
           </material>
         </visual>
       </link>
-    </model>
+    </model> -->
 
     <include>
       <pose degrees="true">0 0 0 0 0 90</pose>
