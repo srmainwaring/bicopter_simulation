@@ -34,7 +34,8 @@
     <link name="base_link">
       <inertial>
         <!-- <pose>0.002973 0.001387 0.095001 0 0 0</pose> --> <!--Default : 0.002973 0.001387 0.095001 0 0 0-->
-        <pose>0.002973 0 0.08 0 0 0</pose>
+        <!-- <pose>0.002973 0 0.08 0 0 0</pose> -->
+        <pose>0.0047 0 0.08 0 0 0</pose>
         <!-- <mass>0.02</mass> --> <!--원래 값 mass 0.390996-->
         <!--
           Estimate for inertial based on a solid box with dimensions:
