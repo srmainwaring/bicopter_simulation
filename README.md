@@ -35,3 +35,22 @@
 /home/lck/gz_ws/src/bicopter_simulation/worlds
 /home/lck/ros_ws/src/bicopter_simulation/config
 ```
+
+### 바이콥터 비행모드 (bicopter flight Mode)
+
+| # | Copter | Plane |
+| --- | --- | --- |
+|  0 | STABILIZE | MANUAL |
+|  1 | ACRO | CIRCLE |
+|  2 | ALT_HOLD |STABILIZE |
+|  3 | AUTO | TRAINING |
+|  4 | GUIDED | ACRO |
+|  5 | LOITER | FBWA |
+|  6 | RTL | FBWB |
+|  7 | CIRCLE | CRUISE |
+|  8 |  | AUTOTUNE |
+|  9 | LAND |  |
+| 10 |  |  |
+| 11 | DRIFT | RTL |
+| 12 |  |  |
+| 13 | SPORT | TAKEOFF |
