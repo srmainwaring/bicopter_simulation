@@ -27,6 +27,8 @@
   Command right motor angular velocity (cw)
     gz topic -t "/model/bicopter/joint/cw_mot_joint/cmd_vel" -m gz.msgs.Double -p "data: 10.0"
 
+  Adjust camera zoom
+    gz service -s /gui/follow/offset -/-reqtype gz.msgs.Vector3d -/-reptype gz.msgs.Boolean -/-timeout 2000 -/-req "x: -0.5, y: 0, z: 0.25"
 -->
 <sdf version="1.9"> 
   <model name="bicopter">
@@ -34,7 +36,8 @@
     <link name="base_link">
       <inertial>
         <!-- <pose>0.002973 0.001387 0.095001 0 0 0</pose> --> <!--Default : 0.002973 0.001387 0.095001 0 0 0-->
-        <pose>0.002973 0 0.08 0 0 0</pose>
+        <!-- <pose>0.002973 0 0.08 0 0 0</pose> -->
+        <pose>0.0047 0 0.08 0 0 0</pose>
         <!-- <mass>0.02</mass> --> <!--원래 값 mass 0.390996-->
         <!--
           Estimate for inertial based on a solid box with dimensions:
@@ -143,7 +146,7 @@
           <upper>0.785398163</upper>
         </limit>
         <dynamics>
-          <damping>0.004</damping> 
+          <damping>0.01</damping> 
         </dynamics>
       </axis>      
     </joint>
@@ -255,7 +258,7 @@
           <upper>0.785398163</upper>
         </limit>
         <dynamics>
-          <damping>0.004</damping>
+          <damping>0.01</damping>
         </dynamics>
       </axis>
     </joint>
@@ -411,7 +414,7 @@
       <cmd_min>-2.5</cmd_min>
     </plugin> -->
 
-    <!-- left (ccw) lift-drag -->
+    <!-- prop left (ccw) lift-drag -->
     <plugin name="gz::sim::systems::LiftDrag"
       filename="gz-sim-lift-drag-system">
       <a0>0.3</a0>
@@ -422,7 +425,7 @@
       <cla_stall>-0.025</cla_stall>
       <cda_stall>0.0</cda_stall>
       <cma_stall>0.0</cma_stall>
-      <area>0.0013</area>
+      <area>0.002</area>
       <air_density>1.2041</air_density>
       <cp>0.084 0 0</cp>
       <forward>0 1 0</forward>
@@ -439,7 +442,7 @@
       <cla_stall>-0.025</cla_stall>
       <cda_stall>0.0</cda_stall>
       <cma_stall>0.0</cma_stall>
-      <area>0.0013</area>
+      <area>0.002</area>
       <air_density>1.2041</air_density>
       <cp>-0.042 0.072746134 0</cp>
       <forward>-0.866025404 -0.5 0</forward>
@@ -456,7 +459,7 @@
       <cla_stall>-0.025</cla_stall>
       <cda_stall>0.0</cda_stall>
       <cma_stall>0.0</cma_stall>
-      <area>0.0013</area>
+      <area>0.002</area>
       <air_density>1.2041</air_density>
       <cp>-0.042 -0.072746134 0</cp>
       <forward>0.866025404 -0.5 0</forward>
@@ -464,7 +467,7 @@
       <link_name>ccw_mot_link</link_name>
     </plugin>
 
-    <!-- prop_left (cw) lift-drag (ArduPilot motor 2) -->
+    <!-- prop right (ccw) lift-drag -->
     <plugin name="gz::sim::systems::LiftDrag"
       filename="gz-sim-lift-drag-system">
       <a0>0.3</a0>
@@ -475,7 +478,7 @@
       <cla_stall>-0.025</cla_stall>
       <cda_stall>0.0</cda_stall>
       <cma_stall>0.0</cma_stall>
-      <area>0.0013</area>
+      <area>0.002</area>
       <air_density>1.2041</air_density>
       <cp>0.084 0 0</cp>
       <forward>0 -1 0</forward>
@@ -492,7 +495,7 @@
       <cla_stall>-0.025</cla_stall>
       <cda_stall>0.0</cda_stall>
       <cma_stall>0.0</cma_stall>
-      <area>0.0013</area>
+      <area>0.002</area>
       <air_density>1.2041</air_density>
       <cp>-0.042 0.072746134 0</cp>
       <forward>0.866025404 0.5 0</forward>
@@ -509,7 +512,7 @@
       <cla_stall>-0.025</cla_stall>
       <cda_stall>0.0</cda_stall>
       <cma_stall>0.0</cma_stall>
-      <area>0.0013</area>
+      <area>0.002</area>
       <air_density>1.2041</air_density>
       <cp>-0.042 0.072746134 0</cp>
       <forward>-0.866025404 0.5 0</forward>
