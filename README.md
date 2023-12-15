@@ -14,14 +14,13 @@
 
 ### 연구방법 (Research method)
 
-1. `sim_vehicle.py -v ArduCopter -f BiCopter --model JSON` 의 고도화
-2. `gz sim -v4 -r bicopter_runway.sdf` 의 고도화
+1. sim_vehicle.py -v ArduCopter -f JSON --add-param-file=$HOME/ros_ws/src/bicopter_simulation/config/bicopter.param --console --map의 고도화(advancement)
+2. gz sim -v4 -r bicopter_runway.sdf의 고도화(advancement)
+
 
 ### 연구기간 (Research period)
 
-2023년 8월 (August 2023)
-
-/home/lck/gz_ws/src/ardupilot_gazebo/worlds
+2023년 8월 (August 2023) ~ 2024년 8월 (August 2024)
 
 ### 멤버 (People)
 
@@ -30,12 +29,9 @@
 
 ### 주요파일 경로 (File paths)
 
-```bash
-/home/lck/gz_ws/src/ardupilot_gazebo/models/bicopter_with_standoffs
-
-/home/lck/gz_ws/src/ardupilot_gazebo/models/bicopter_with_ardupilot
-
-/home/lck/gz_ws/src/ardupilot_gazebo/worlds/bicopter_runway.sdf
-
-bicopter_runway.sdf > bicopter_with_ardupilot > bicopter_with_standoffs
+```
+/home/lck/gz_ws/src/bicopter_simulation/models/bicopter
+/home/lck/gz_ws/src/bicopter_simulation/models/bicopter_with_ardupilot
+/home/lck/gz_ws/src/bicopter_simulation/worlds
+/home/lck/ros_ws/src/bicopter_simulation/config
 ```
